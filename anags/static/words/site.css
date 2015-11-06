@@ -1,0 +1,24 @@
+/*
+.jumbotron .container .row {
+    text-align: center;
+}
+*/
+
+
+.jumbotron {
+    position: relative;
+    background: #000;
+    text-align: center;
+    /*margin-top: 70px !important;
+    margin-top: 23px;
+    padding: 0 !important;
+    margin-bottom: 0 !important;*/
+}
+
+.col-md-12 {
+    margin: 1em auto 0.5em;
+}
+
+#rstr {
+    margin-bottom: -10em;
+}

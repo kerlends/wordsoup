@@ -1,0 +1,13 @@
+.dropdown-menu > li > a {
+    -webkit-transform: rotateY(180deg);
+}
+
+.jumbotron .container {
+    position: relative;
+    padding: 0 !important;
+    background: #000;
+    text-align: center;
+    margin-top: 70px !important;
+    margin-top: 23px;
+    margin-bottom: 0 !important;
+}
