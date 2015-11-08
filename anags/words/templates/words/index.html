@@ -25,7 +25,18 @@
 		</div>
         {% if rack_str %}
         <div class="col-xs-12 col-md-12">
-            <center><h3><small>Rack:</small> {{ rack_str }}</h3></center>
+            <div class="container">
+                <div class="row">
+                    <center>
+                        <div class="col-xs-6 col-md-6">
+                            <h4><small>{{ rack_str }}</small></h4>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <h4><small>Total time: {{ time_taken }}</small></h4>
+                        </div>
+                    </center>
+                </div>
+            </div>
         </div>
         {% endif %}
         {% if data %}

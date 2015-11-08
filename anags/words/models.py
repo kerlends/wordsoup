@@ -4,9 +4,18 @@ from .options import BEAR_OPTIONS
 
 class Word(models.Model):
     word = models.CharField(max_length=50)
+    charsort = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.word
+
+    def save(self, *args, **kwargs):
+        if not self.charsort:
+            w_sort = list(self.word)
+            w_sort.sort()
+            self.charsort = "".join(w_sort)
+
+        super(Word, self).save(*args, **kwargs)
 
 
 class Bonus(models.Model):
