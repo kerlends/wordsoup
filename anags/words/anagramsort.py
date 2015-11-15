@@ -3,25 +3,20 @@ from collections import Counter, OrderedDict
 
 def get_words(rack, WORDS):
     my_words = {}
-    rack_list = list(rack.lower())
-    c1 = Counter(rack_list)
+    c1 = Counter(rack.lower())
 
     for word in WORDS:
-        word_list = list(word)
-        word_list.sort()
-        c2 = Counter(word_list)
-        same = c1 & c2
-        samel = list(same.elements())
-        samel.sort()
-        if samel == word_list:
-            w_index = len(word)
+        char_list = sorted(word)
+        c2 = Counter(word)
+        same = sorted((c1 & c2).elements())
+        if same == char_list:
             try:
-                my_words[w_index].append(word)
+                my_words[len(word)].append(word)
             except:
-                my_words[w_index] = [word]
+                my_words[len(word)] = [word]
 
     my_words = filter_words(my_words)
-    its = list(my_words.items())
+    its = sorted(my_words.items())
     its.reverse()
     my_words = OrderedDict(its)
 

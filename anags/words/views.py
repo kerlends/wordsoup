@@ -2,11 +2,8 @@ from django.shortcuts import render
 from .models import Word
 from .forms import RackForm
 from .anagramsort import get_words
-from .utils import word_sort
+from .utils import word_sort, query_filter
 from time import time
-
-
-all_words = Word.objects.all()
 
 
 def index(request):
@@ -16,10 +13,12 @@ def index(request):
         form = RackForm(request.POST)
         if form.is_valid():
             word_rack = word_sort(request.POST['rack'])
-            filtered_words = all_words.filter(charsort__startswith=word_rack[0])
-            final_words = filtered_words.values_list('word', flat=True)
-            data = get_words(word_rack, final_words)
-
+            query, exclude = query_filter(word_rack)
+            all_words = Word.objects.exclude(exclude)\
+                .filter(query)\
+                .distinct()\
+                .values_list('word', flat=True)
+            data = get_words(word_rack, all_words)
             final_time = time()
             total = round(final_time - start_time, 4)
 
