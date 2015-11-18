@@ -1,13 +1,44 @@
-.dropdown-menu > li > a {
-    -webkit-transform: rotateY(180deg);
+.jumbotron h1, .jumbotron h1 a, .jumbotron h1 a:visited, .jumbotron h1 a:active {
+    margin-top: 0;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 2.25em;
+    font-family: 'Lobster', sans-serif;
 }
 
-.jumbotron .container {
+h1 small {
+    color: rgb(0, 0, 0);
+}
+
+.jumbotron {
+    background: rgb(40, 143, 235);
     position: relative;
-    padding: 0 !important;
-    background: #000;
     text-align: center;
-    margin-top: 70px !important;
-    margin-top: 23px;
-    margin-bottom: 0 !important;
+}
+
+li a, li a:visited, li a:active {
+    color: rgb(0, 0, 0);
+}
+
+ul {
+    columns: 3;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    list-style-type: none;
+    margin-top: 1em;
+}
+
+.col-md-12 {
+    margin: 1em auto 0.5em;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+h4 {
+    text-align: center;
+}
+#rstr {
+    margin-bottom: -10em;
 }

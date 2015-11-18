@@ -1,5 +1,5 @@
 from django.db import models
-from .options import BEAR_OPTIONS
+from django.contrib.postgres.fields import ArrayField
 
 
 class Letter(models.Model):
@@ -14,6 +14,11 @@ class Word(models.Model):
     charsort = models.CharField(max_length=50, blank=True)
     length = models.PositiveIntegerField(blank=True, null=True)
     letters = models.ManyToManyField(Letter, blank=True, related_name='words')
+    charlist = ArrayField(
+        models.CharField(max_length=25, blank=True),
+        size=25,
+        default=list
+    )
 
     def __str__(self):
         return self.word
