@@ -30,6 +30,6 @@ def solve(request, rack):
     form = SolverForm({'rack': rack})
 
     if form.is_valid():
-        data = json.dumps(form.solve()['data'])
+        data = form.solve()['data']
         #return render(request, 'words/index.html', data)
         return JSONResponse(data)
