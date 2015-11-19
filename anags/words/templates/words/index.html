@@ -35,22 +35,22 @@
         </div>
         {% endif %}
         {% if data %}
+        {% for ccount, words in data.items %}
         <div class="col-xs-12 col-md-12 col-sm-12">
-            <table class="table table-condensed table-striped table-responsive">
-                {% for ccount, words in data.items %}
-                <tr><td><h4>{{ ccount }} characters</h4></td></tr>
-                <tr>
-                    <td>
-                        <ul>
-                            {% for word in words %}
-                            <li><a href="http://merriam-webster.com/dictionary/{{ word }}">{{ word }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{ ccount }} characters
+                </div>
+                <div class="panel-body">
+                    {% for word in words %}
+                    <div class="col-md-2 col-xs-4 col-sm-3">
+                        <a href="http://merriam-webster.com/dictionary/{{ word }}">{{ word }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
+        {% endfor %}
         {% endif %}
     </div>
 </div>

@@ -4,14 +4,15 @@ from words.utils import query_to_results
 
 
 class SolverForm(forms.Form):
-    rack = forms.CharField(max_length=100)
+    rack = forms.CharField(max_length=100, required=False)
 
     def solve(self):
+        context = dict()
         start = time.time()
         rack = self.cleaned_data['rack']
-        data = query_to_results(rack)
-        end = time.time()
+        context['data'] = query_to_results(rack)
+        context['rack_str'] = rack.upper()
+        context['time_taken'] = round(time.time() - start, 4)
+        context['form'] = SolverForm()
 
-        return {'data': data,
-                'rack_str': rack.upper(),
-                'time_taken': round(end - start, 4)}
+        return context
