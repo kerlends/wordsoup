@@ -25,14 +25,15 @@ class Word(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.charsort:
-            w_sort = list(self.word)
-            w_sort.sort()
-            self.charsort = "".join(w_sort)
+            self.charsort = "".join(sorted(self.word))
 
         if not self.length:
             self.length = len(self.word)
 
-        if not self.letters.all().count() > 0:
+        if not self.charlist:
+            self.charlist = list(self.charsort)
+
+        if self.id and not self.letters.all().count() > 0:
             letters = Letter.objects.filter(letter__in=self.word)
             self.letters.add(*letters)
 
