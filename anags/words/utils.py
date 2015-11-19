@@ -16,7 +16,7 @@ def query_chain(rack):
     rack = rack[::]
     return Q(length__lte=len(rack)) &\
         Q(charsort__startswith=rack[0]) &\
-        Q(letters__letter__in=rack)
+        Q(charlist__contained_by=rack)
 
 
 def query_exclude(rack):
