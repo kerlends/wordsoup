@@ -12,10 +12,12 @@ def words_find(rack, WORDS):
             my_words.setdefault(length, []).append(word)
 
     my_words = limit_results(my_words)
+    its = sorted(my_words.items())
+    its.reverse()
 
-    return OrderedDict(sorted(my_words.items(), reverse=True))
-    #return [{'count': key, 'words': val} for key, val
-    #       in my_words.items()]
+    #return OrderedDict(sorted(my_words.items(), reverse=True))
+    return {'data': [{'count': key, 'words': val} for key, val
+                     in its]}
 
 
 def limit_results(words):

@@ -21,13 +21,13 @@
 	<div class="col-xs-12 col-md-12">
 		<h4><small>{{ rack }}</small></h4>
 	</div>
-	<div class="col-xs-12 col-md-12 col-sm-12" ng-repeat="(char_count, words) in results | orderBy:'count'">
+	<div class="col-xs-12 col-md-12 col-sm-12" ng-repeat="result in results.data">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				{{ char_count }} characters
+				{{ result.count }} characters
 			</div>
 			<div class="panel-body">
-				<div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in words">
+				<div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in result.words">
 					<a href="http://merriam-webster.com/dictionary/{{ word }}">{{ word }}</a>
 				</div>
 			</div>
