@@ -20,8 +20,11 @@ INSTALLED_APPS = (
 
     'rest_framework',
     'django_extensions',
+    'compressor',
     'bootstrap3',
+    'djangular',
 
+    'web',
     'words',
 )
 
@@ -53,6 +56,12 @@ TEMPLATES = [
         },
     },
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 WSGI_APPLICATION = 'anags.wsgi.application'
 

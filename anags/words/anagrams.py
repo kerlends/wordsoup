@@ -14,11 +14,13 @@ def words_find(rack, WORDS):
     my_words = limit_results(my_words)
 
     return OrderedDict(sorted(my_words.items(), reverse=True))
+    #return [{'count': key, 'words': val} for key, val
+    #       in my_words.items()]
 
 
 def limit_results(words):
     for k, v in words.items():
-        if len(v) > 6 and k < 5:
-            words[k] = v[:6]
+        if len(v) > 12:
+            words[k] = v[:12]
 
     return words

@@ -1,0 +1,30 @@
+{% load compress %}{% load djangular_tags %}
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>learnins</title>
+  {% compress css %}
+  {% include "css.html" %}
+  {% endcompress %}
+</head>
+<body>
+	{% block header %}
+	<div class="jumbotron">
+		<div class="container">
+			<h1><a href="/">word<small>soup</small></a></h1>
+		</div>
+	</div>
+	{% endblock header %}
+  <div class="container-fluid">
+    {% block content %}
+    {% endblock content %}
+  </div>
+  {% compress js %}
+  {% include "js.html" %}
+	{% block compressjs %}
+	{% endblock compressjs %}
+  {% endcompress %}
+</body>
+</html>

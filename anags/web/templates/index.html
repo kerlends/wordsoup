@@ -1,0 +1,38 @@
+{% extends "base.html" %}{% load djangular_tags %}
+
+{% block compressjs %}
+{% load staticfiles %}
+<script src="{% static 'app/app.js' %}"></script>
+{% endblock compressjs %}
+
+{% block content %}
+{% angularjs %}
+<div ng-controller="mainController" class="row">
+	<div class="col-xs-12 col-md-12">
+		<form class="form">
+			<div class="input-group">
+				<input ng-model="rack" ng-change="submitRack()" class="form-control" name="rack" type="text" placeholder="Put your characters/rack here!" autofocus>
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="submit" ng-click="submitRack(rack)">Submit</button>
+				</span>
+			</div>
+		</form>
+	</div>
+	<div class="col-xs-12 col-md-12">
+		<h4><small>{{ rack }}</small></h4>
+	</div>
+	<div class="col-xs-12 col-md-12 col-sm-12" ng-repeat="(char_count, words) in results | orderBy:'count'">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				{{ char_count }} characters
+			</div>
+			<div class="panel-body">
+				<div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in words">
+					<a href="http://merriam-webster.com/dictionary/{{ word }}">{{ word }}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endangularjs %}
+{% endblock content %}

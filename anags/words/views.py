@@ -1,11 +1,10 @@
-import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
 from words.solver import SolverForm
-from words.utils import word_sort
+from words.utils import word_sort, query_to_results
 
 
 class JSONResponse(HttpResponse):
@@ -13,6 +12,7 @@ class JSONResponse(HttpResponse):
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
+
 
 def index(request):
     context = {'form': SolverForm()}
@@ -31,5 +31,16 @@ def solve(request, rack):
 
     if form.is_valid():
         data = form.solve()['data']
-        #return render(request, 'words/index.html', data)
         return JSONResponse(data)
+
+
+@api_view(['POST'])
+def api(request):
+    if request.method == 'POST':
+        if 'rack' not in request.data.keys():
+            return JSONResponse({'error': 'key not recognized'})
+        else:
+            rack = request.data['rack']
+            return JSONResponse({'results': query_to_results(rack)})
+    else:
+        return JSONResponse({'error': 'invalid request'})
