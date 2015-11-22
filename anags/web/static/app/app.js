@@ -15,10 +15,10 @@ testApp.filter('orderObjectBy', function() {
 });
 
 testApp.factory('SolverService', function($resource) {
-	var api = $resource('/api/:rack/');
+	var api = $resource('/api/:rack');
 	var SolverService = {
 		send: function(myRack) {
-			return api.get({rack: myRack});
+			return api.get({rack: myRack.toLowerCase()});
 		}
 	};
 
@@ -27,8 +27,8 @@ testApp.factory('SolverService', function($resource) {
 
 testApp.controller('mainController', function($scope, SolverService) {
 	$scope.SolverService = SolverService;
-	$scope.rack = 'anagrams';
+	$scope.rack = '';
 	$scope.submitRack = function() {
 		$scope.results = $scope.SolverService.send($scope.rack);
 	};
-});
+    $scope.isFilled = false;

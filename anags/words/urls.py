@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^(?P<rack>[A-Za-z]+)/$', views.solve),
+    url(r'^(?P<rack>[a-zA-Z]+)$', views.solve),
 ]
