@@ -1,38 +1,18 @@
-{% extends "base.html" %}{% load djangular_tags %}
+{% extends "base.html" %}
 
+{% block content %}
+<ws-nav></ws-nav>
+<div ng-view></div>
+{% endblock content %}
 {% block compressjs %}
 {% load staticfiles %}
 <script src="{% static 'app/app.js' %}"></script>
+<script src="{% static 'app/controllers/solver.js' %}"></script>
+<script src="{% static 'app/services/resource.js' %}"></script>
+<script src="{% static 'app/services/static.js' %}"></script>
+<script>
+angular.module('wordsoup')
+	.constant('STATIC_URL', '/static/')
+	.constant('API_URL', '/api/');
+</script>
 {% endblock compressjs %}
-
-{% block content %}
-{% angularjs %}
-<div ng-controller="mainController" class="row">
-	<div class="col-xs-12 col-md-12">
-		<form class="form">
-			<div class="input-group">
-				<input ng-model="rack" ng-change="submitRack()" class="form-control" name="rack" type="text" placeholder="Put your characters/rack here!" autofocus autocomplete="off">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="submit" ng-click="submitRack(rack)">Submit</button>
-				</span>
-			</div>
-		</form>
-	</div>
-	<div class="col-xs-12 col-md-12">
-		<h4><small>{{ rack }}</small></h4>
-	</div>
-	<div class="col-xs-12 col-md-12 col-sm-12" ng-repeat="result in results.data">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				{{ result.count }} characters
-			</div>
-			<div class="panel-body">
-				<div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in result.words">
-					<a href="http://merriam-webster.com/dictionary/{{ word }}">{{ word }}</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-{% endangularjs %}
-{% endblock content %}
