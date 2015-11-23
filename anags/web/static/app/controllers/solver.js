@@ -1,6 +1,5 @@
 angular.module('wordsoup')
-	.controller('SolverController', ['$scope', '$filter', '$timeout', '$log', 'SolverService', function($scope, $filter, $timeout, $log, SolverService) {
-		var temp;
+	.controller('SolverController', ['$scope', '$filter', '$timeout', 'SolverService', function($scope, $filter, $timeout, SolverService) {
 		$scope.rack = '';
 
 		$scope.rackClean = function() {

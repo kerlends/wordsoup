@@ -1,5 +1,5 @@
 angular.module('wordsoup', ['ngResource', 'ngRoute'])
-	.config(['$routeProvider', '$resourceProvider', 'STATIC_URL', function($routeProvider, $resourceProvider, STATIC_URL) {
+	.config(['$routeProvider', '$resourceProvider', '$locationProvider', 'STATIC_URL', function($routeProvider, $resourceProvider, $locationProvider, STATIC_URL) {
 		var toStatic = function(i) {
 			return '{}{}'.format(STATIC_URL, i);
 		};
@@ -11,4 +11,6 @@ angular.module('wordsoup', ['ngResource', 'ngRoute'])
 				controller: 'SolverController',
 				controllerAs: 'solverCtrl',
 			});
+
+		$locationProvider.html5Mode(true);
 	}]);
