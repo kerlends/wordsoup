@@ -1,18 +1,30 @@
 angular.module('wordsoup')
-	.controller('SolverController', ['$scope', '$filter', '$timeout', 'SolverService', function($scope, $filter, $timeout, SolverService) {
-		$scope.SolverService = SolverService;
+	.controller('SolverController', ['$scope', '$filter', '$timeout', '$log', 'SolverService', function($scope, $filter, $timeout, $log, SolverService) {
+		var temp;
 		$scope.rack = '';
+
 		$scope.rackClean = function() {
 			return $filter('lowercase')($scope.rack);
 		};
-		$scope.submitRack = function() {
-			var temp;
+
+		$scope.formEmpty = function() {
+			return ($scope.rack.length > 0);
+		};
+
+		$scope.resetForm = function() {
+			$scope.rack = '';
+			$scope.submit();
+		}
+
+		$scope.submit = function() {
 			$timeout.cancel($scope.timeOut);
-			$scope.timeOut = $timeout(function() {
-				temp = $scope.SolverService.send($scope.rackClean());
-				$timeout(function() {
-					$scope.results = temp;
-				}, 150);
-			}, 200);
+			if($scope.rack.length > 0) {
+				$scope.timeOut = $timeout(function() {
+					$scope.data = SolverService.solve($scope.rackClean());
+					$scope.data.$promise.then(function(data) {
+						$scope.results = data;
+					});
+				}, 350);
+			};
 		};
 	}]);

@@ -6,6 +6,10 @@
     font-family: 'Lobster', sans-serif;
 }
 
+.container-fluid {
+	margin-top: 1.5em;
+}
+
 h1 small {
     color: rgb(0, 0, 0);
 }
@@ -16,21 +20,10 @@ h1 small {
     text-align: center;
 }
 
-.table-responsive {
-    overflow-x: auto;
-}
-
 h4, .panel-heading {
     text-align: center;
-}
-#rstr {
-    margin-bottom: -10em;
 }
 
 .panel {
     margin-bottom: 0;
-}
-
-#info-wrapper {
-	text-align: center;
 }

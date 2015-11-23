@@ -10,17 +10,9 @@
   {% endcompress %}
 </head>
 <body>
-	{% block header %}
-	<div class="jumbotron" ng-hide="isEmpty">
-		<div class="container">
-			<h1><a href="/">word<small>soup</small></a></h1>
-		</div>
-	</div>
-	{% endblock header %}
-  <div class="container-fluid">
-    {% block content %}
-    {% endblock content %}
-  </div>
+	{% block content %}
+	{% endblock content %}
+
   {% compress js %}
   {% include "js.html" %}
 	{% block compressjs %}

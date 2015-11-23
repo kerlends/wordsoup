@@ -9,6 +9,6 @@ angular.module('wordsoup', ['ngResource', 'ngRoute'])
 			.when('/', {
 				templateUrl: toStatic('app/views/solver.html'),
 				controller: 'SolverController',
-				controllerAs: 'solverCtrl'
+				controllerAs: 'solverCtrl',
 			});
 	}]);

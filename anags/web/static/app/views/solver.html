@@ -1,27 +1,35 @@
-<div class="row">
-	<div class="col-xs-12 col-md-12">
-		<form class="form">
-			<div class="input-group">
-				<input ng-model="rack" ng-change="submitRack()" class="form-control" type="text" placeholder="Put your characters/rack here!" autofocus autocomplete="off">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="submit" ng-click="submitRack(rack)">Submit</button>
-				</span>
-			</div>
-		</form>
-	</div>
-	<div class="col-xs-12 col-md-12">
-		<h4><small>{{ rackClean() }}</small></h4>
-	</div>
-	<div class="col-xs-12 col-md-12 col-sm-12" ng-repeat="result in results.data">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				{{ result.count }} characters
-			</div>
-			<div class="panel-body">
-				<div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in result.words">
-					<a href="http://merriam-webster.com/dictionary/{{ word }}">{{ word }}</a>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="jumbotron" ng-hide="formEmpty()">
+  <div class="container">
+    <h1><a href="/">word<small>soup</small></a></h1>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <form class="form">
+        <div class="input-group">
+          <input ng-model="rack" ng-change="submit()" class="form-control" type="text" placeholder="Put your characters/rack here!" autofocus autocomplete="off">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" ng-click="resetForm()">Clear</button>
+          </span>
+        </div>
+      </form>
+    </div>
+    <div class="col-xs-12 col-md-12">
+      <h4><small>{{ rackClean() }}</small></h4>
+    </div>
+    <div class="col-xs-12 col-md-12 col-sm-12" ng-repeat="result in results.data" ng-show="formEmpty()">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          {{ result.count }} characters
+        </div>
+        <div class="panel-body">
+          <div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in result.words">
+            <a href="http://merriam-webster.com/dictionary/{{ word }}">{{ word }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
