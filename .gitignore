@@ -5,4 +5,5 @@ migrations
 .ropeproject
 db.sqlite3
 *.log
-
+CACHE
+cache

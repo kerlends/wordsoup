@@ -2,9 +2,13 @@ angular.module('wordsoup')
 	.controller('SolverController', ['$scope', '$filter', '$timeout', 'SolverService', function($scope, $filter, $timeout, SolverService) {
 		$scope.rack = '';
 
-		$scope.rackClean = function() {
+		$scope.rackLower = function() {
 			return $filter('lowercase')($scope.rack);
 		};
+
+        $scope.rackClean = function() {
+            return $filter('spaceless')($scope.rackLower());
+        };
 
 		$scope.formEmpty = function() {
 			return ($scope.rack.length > 0);
@@ -23,7 +27,7 @@ angular.module('wordsoup')
 					$scope.data.$promise.then(function(data) {
 						$scope.results = data;
 					});
-				}, 350);
+				}, 150);
 			};
 		};
 	}]);
