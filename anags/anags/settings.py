@@ -4,8 +4,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-#DEBUG = False if os.environ.get('DEBUG') == 'False' else True
-DEBUG = True
+# DEBUG = False if os.environ.get('DEBUG') == 'False' else True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,6 +42,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+    'anags.middleware.InternalOnlyMiddleware',
 )
 
 ROOT_URLCONF = 'anags.urls'
@@ -80,6 +82,10 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+INTERNAL_IPS = [
+    '10.8.0.18'
+]
 
 LANGUAGE_CODE = 'en-us'
 
