@@ -1,4 +1,4 @@
-angular.module('wordsoup', ['ngResource', 'ngRoute'])
+angular.module('wordsoup', ['ngResource', 'ngRoute', 'ngAnimate'])
 	.config(['$routeProvider', '$resourceProvider', '$locationProvider', 'STATIC_URL', function($routeProvider, $resourceProvider, $locationProvider, STATIC_URL) {
 		var toStatic = function(i) {
 			return '{}{}'.format(STATIC_URL, i);
