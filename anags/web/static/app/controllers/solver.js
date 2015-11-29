@@ -7,7 +7,7 @@ angular.module('wordsoup')
 		};
 
         $scope.rackClean = function() {
-            return $filter('spaceless')($scope.rackLower());
+            return $filter('charsonly')($scope.rackLower());
         };
 
 		$scope.formEmpty = function() {
