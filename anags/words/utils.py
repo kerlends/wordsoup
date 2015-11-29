@@ -1,3 +1,4 @@
+from collections import Counter
 from django.db.models import Q
 from words.models import Word
 from words.anagrams import words_find
@@ -48,3 +49,8 @@ def query_to_results(rack):
         .values_list('word', 'charlist', 'length')
 
     return words_find(rack, flat_query_set)
+
+
+def rack_diff(rack, word):
+    diffd = list((Counter(rack) - Counter(word)).elements())
+    return ''.join(diffd)

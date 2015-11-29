@@ -25,9 +25,18 @@ angular.module('wordsoup')
 				$scope.timeOut = $timeout(function() {
 					$scope.data = SolverService.solve($scope.rackClean());
 					$scope.data.$promise.then(function(data) {
-						$scope.results = data;
+						$scope.results = data.solved;
 					});
 				}, 150);
 			};
 		};
+
+		$scope.wordSelect = function(word) {
+			$scope.data = SolverService.refresh($scope.rackClean(), word);
+			$scope.data.$promise.then(function(data) {
+				$scope.results = data.solved;
+				$scope.rack = data.rack;
+			});
+		};
+
 	}]);

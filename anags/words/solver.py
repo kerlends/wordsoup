@@ -11,7 +11,7 @@ class SolverForm(forms.Form):
         start = time.time()
         rack = self.cleaned_data['rack']
         context['data'] = query_to_results(rack)
-        context['rack_str'] = rack.upper()
+        context['rack_str'] = rack.lower()
         context['time_taken'] = round(time.time() - start, 4)
         context['form'] = SolverForm()
 
