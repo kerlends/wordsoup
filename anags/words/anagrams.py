@@ -1,4 +1,4 @@
-from collections import Counter, OrderedDict
+from collections import Counter
 
 
 def words_find(rack, WORDS):
@@ -15,14 +15,14 @@ def words_find(rack, WORDS):
     its = sorted(my_words.items())
     its.reverse()
 
-    #return OrderedDict(sorted(my_words.items(), reverse=True))
-    return {'data': [{'count': key, 'words': val} for key, val
-                     in its]}
+    return {'data': [
+        {'count': key, 'words': val, 'num': len(val)} for key, val in its
+    ]}
 
 
 def limit_results(words):
     for k, v in words.items():
-        if len(v) > 12:
-            words[k] = v[:12]
+        if len(v) > 45:
+            words[k] = v[:45]
 
     return words

@@ -4,12 +4,15 @@ from django.contrib.postgres.fields import ArrayField
 
 class Word(models.Model):
     word = models.CharField(max_length=50)
-    charsort = models.CharField(max_length=50, blank=True)
-    length = models.PositiveIntegerField(blank=True, null=True)
+    charsort = models.CharField(max_length=50, blank=True,
+                                editable=False)
+    length = models.PositiveIntegerField(blank=True, null=True,
+                                         editable=False)
     charlist = ArrayField(
         models.CharField(max_length=25, blank=True),
         size=25,
-        default=list
+        default=list,
+        editable=False
     )
 
     def __str__(self):
