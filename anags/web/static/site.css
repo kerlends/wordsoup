@@ -6,6 +6,11 @@
     font-family: 'Lobster', sans-serif;
 }
 
+input:focus,
+button:focus {
+    outline: none;
+}
+
 .jumbotron {
     background: rgb(40, 143, 235);
     position: relative;
@@ -32,7 +37,7 @@ h4, .panel-heading {
     z-index: 9999;
 }
 
-.btn-opt, button:active {
+.btn-opt {
     height: 2.4em;
     border-radius: 0;
     text-decoration: none;
