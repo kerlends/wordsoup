@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
 
+BONUS_TYPES = (
+    ('1', 'Multiplier'),
+    ('2', 'Additional points'),
+)
+
+
 class Word(models.Model):
     word = models.CharField(max_length=50)
     charsort = models.CharField(max_length=50, blank=True,
@@ -29,3 +35,13 @@ class Word(models.Model):
             self.charlist = list(self.charsort)
 
         super(Word, self).save(*args, **kwargs)
+
+
+class Bear(models.Model):
+    name = models.CharField(max_length=50)
+    bonus_type = models.CharField(max_length=1, choices=BONUS_TYPES)
+    bonus_for = ArrayField(
+        models.CharField(max_length=25, blank=True),
+        size=25,
+        default=list,
+    )

@@ -5,6 +5,9 @@
 </div>
 
 <div class="container-fluid">
+    <div class="menu-btn">
+        <button class="btn btn-primary btn-circle" data-toggle="modal" data-target="#options">Options</button>
+    </div>
   <div class="row">
     <div class="col-xs-12 col-md-12">
       <form class="form">
@@ -12,8 +15,7 @@
           <input ng-model="rack" ng-change="submit()" class="form-control" type="text" placeholder="Put your characters/rack here!" autofocus autocomplete="off">
 
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit" ng-click="resetForm()" ng-hide="formEmpty()">Clear</button>
-            <button class="btn btn-default" type="submit" data-toggle="modal" data-target="#options" ng-show="formEmpty()">Options</button>
+            <button class="btn btn-default" type="submit" ng-click="resetForm()">Clear</button>
           </span>
         </div>
       </form>
@@ -29,9 +31,8 @@
                     <h4 class="modal-title">Options</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Limit number of words per word group (by length):
-                    <input type="checkbox" ng-model="limit" /></p>
-                    <input type="number" ng-model="limitBy" ng-show="limit">
+                    Limit word count per word length by:
+                    <input type="number" ng-model="limitBy">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
