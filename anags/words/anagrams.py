@@ -1,7 +1,7 @@
 from collections import Counter
 
 
-def words_find(rack, WORDS):
+def words_find(rack, WORDS, limit):
     my_words = {}
     c1 = Counter(rack.lower())
 
@@ -11,7 +11,7 @@ def words_find(rack, WORDS):
         if same == char_list:
             my_words.setdefault(length, []).append(word)
 
-    my_words = limit_results(my_words)
+    my_words = limit_results(my_words, limit)
     its = sorted(my_words.items())
     its.reverse()
 
@@ -20,9 +20,9 @@ def words_find(rack, WORDS):
     ]}
 
 
-def limit_results(words):
+def limit_results(words, limit):
     for k, v in words.items():
-        if len(v) > 45:
-            words[k] = v[:45]
+        if len(v) > limit:
+            words[k] = v[:limit]
 
     return words

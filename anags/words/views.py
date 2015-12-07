@@ -24,17 +24,23 @@ def solve(request):
         if form.is_valid():
             data = form.solve()['data']
             return JSONResponse(data)
+
     elif request.method == 'POST':
         data = request.data
-        if 'rack' in data.keys():
-            if 'word' in data.keys():
+        keys = data.keys()
+        if 'rack' in keys:
+            if 'word' in keys:
                 refreshed = rack_diff(data['rack'], data['word'])
                 form = SolverForm({'rack': refreshed})
             else:
                 form = SolverForm({'rack': data['rack']})
 
             if form.is_valid():
-                _raw = form.solve()
+                if 'limit' in keys:
+                    _raw = form.solve(data['limit'])
+                else:
+                    _raw = form.solve()
+
                 data = _raw['data']
                 new_rack = _raw['rack_str']
 

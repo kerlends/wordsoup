@@ -30,25 +30,21 @@ def query_exclude(rack):
     return query
 
 
-def query_filter(rack):
+def query_to_results(rack, limit):
     all_letters = sorted(rack)
     query = query_chain(all_letters)
+
     del all_letters[0]
     while all_letters:
         query |= query_chain(all_letters)
         del all_letters[0]
 
-    return query, query_exclude(rack)
-
-
-def query_to_results(rack):
-    query, exclude = query_filter(rack)
-    flat_query_set = Word.objects.exclude(exclude)\
+    flat_query_set = Word.objects.exclude(query_exclude(rack))\
         .filter(query)\
         .distinct()\
         .values_list('word', 'charlist', 'length')
 
-    return words_find(rack, flat_query_set)
+    return words_find(rack, flat_query_set, limit)
 
 
 def rack_diff(rack, word):
