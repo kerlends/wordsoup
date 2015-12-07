@@ -1,6 +1,8 @@
 angular.module('wordsoup')
 	.controller('SolverController', ['$scope', '$filter', '$timeout', 'SolverService', function($scope, $filter, $timeout, SolverService) {
 		$scope.rack = '';
+        $scope.limit = true;
+        $scope.limitBy = 24;
 
 		$scope.rackLower = function() {
 			return $filter('lowercase')($scope.rack);
@@ -23,7 +25,12 @@ angular.module('wordsoup')
 			$timeout.cancel($scope.timeOut);
 			if($scope.rack.length > 0) {
 				$scope.timeOut = $timeout(function() {
-					$scope.data = SolverService.solve($scope.rackClean());
+                    if($scope.limit) {
+                        $scope.data = SolverService.solveWithLimit($scope.rackClean(), $scope.limitBy);
+                    } else {
+                        $scope.data = SolverService.solve($scope.rackClean());
+                    }
+
 					$scope.data.$promise.then(function(data) {
 						$scope.results = data.solved;
 					});

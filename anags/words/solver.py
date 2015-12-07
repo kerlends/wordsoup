@@ -6,7 +6,7 @@ from words.utils import query_to_results
 class SolverForm(forms.Form):
     rack = forms.CharField(max_length=100, required=False)
 
-    def solve(self, limit=27):
+    def solve(self, limit=None):
         context = dict()
         start = time.time()
         rack = self.cleaned_data['rack']

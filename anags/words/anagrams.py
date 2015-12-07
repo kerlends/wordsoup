@@ -11,7 +11,9 @@ def words_find(rack, WORDS, limit):
         if same == char_list:
             my_words.setdefault(length, []).append(word)
 
-    my_words = limit_results(my_words, limit)
+    if limit:
+        my_words = limit_results(my_words, limit)
+
     its = sorted(my_words.items())
     its.reverse()
 

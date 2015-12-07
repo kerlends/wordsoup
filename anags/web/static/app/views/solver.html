@@ -29,8 +29,9 @@
                     <h4 class="modal-title">Options</h4>
                 </div>
                 <div class="modal-body">
-                    Limit number of words per word group (by length): <input type="checkbox" ng-model="wordLimit">
-                    <input type="number" ng-hide="wordLimit">
+                    <p>Limit number of words per word group (by length):
+                    <input type="checkbox" ng-model="limit" /></p>
+                    <input type="number" ng-model="limitBy" ng-show="limit">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
