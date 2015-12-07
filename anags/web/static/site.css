@@ -6,46 +6,34 @@
     font-family: 'Lobster', sans-serif;
 }
 
-.container-fluid {
-    margin-top: 1.5em;
-}
-
-h1 small {
-    color: rgb(0, 0, 0);
-}
-
 .jumbotron {
     background: rgb(40, 143, 235);
     position: relative;
     text-align: center;
 }
 
+h1 small {
+    color: rgb(0, 0, 0);
+}
+
 h4, .panel-heading {
     text-align: center;
 }
 
-.panel {
-    margin-bottom: 0;
+.container-fluid {
+    margin-top: 1.5em;
 }
 
-.menu-btn {
+.opt-nav .container {
+    padding: 0;
     position: fixed;
-    z-index: 9998;
-    top: 90%;
-    left: 4%;
-}
-
-.btn-circle {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    font-size: 1.1em;
-    padding: 6px 0;
-    line-height: 1.428571429;
-    border-radius: 25px;
-    font-family: 'Lobster', sans-serif;
-}
-
-.modal {
+    bottom: 0;
+    width: 100%;
     z-index: 9999;
+}
+
+.btn-opt {
+    height: 2.4em;
+    border-radius: 0;
+    font-family: 'Lobster', sans-serif;
 }
