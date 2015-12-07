@@ -5,6 +5,9 @@ angular.module('wordsoup')
 			solve: function(myRack) {
 				return api.save({rack: myRack});
 			},
+            solveWithLimit: function(myRack, limit) {
+                return api.save({rack: myRack, limit: limit});
+            },
 			refresh: function(myRack, myWord) {
 				return api.save({rack: myRack, word: myWord});
 			}

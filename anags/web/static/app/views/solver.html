@@ -10,15 +10,35 @@
       <form class="form">
         <div class="input-group">
           <input ng-model="rack" ng-change="submit()" class="form-control" type="text" placeholder="Put your characters/rack here!" autofocus autocomplete="off">
+
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit" ng-click="resetForm()">Clear</button>
+            <button class="btn btn-default" type="submit" ng-click="resetForm()" ng-hide="formEmpty()">Clear</button>
+            <button class="btn btn-default" type="submit" data-toggle="modal" data-target="#options" ng-show="formEmpty()">Options</button>
           </span>
         </div>
       </form>
     </div>
-    <div class="col-xs-12 col-md-12">
+    <div class="col-xs-12 col-md-12" ng-cloak>
       <h4><small>{{ rackClean() }}</small></h4>
     </div>
+    <div class="modal fade" role="dialog" id="options">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Options</h4>
+                </div>
+                <div class="modal-body">
+                    Limit number of words per word group (by length): <input type="checkbox" ng-model="wordLimit">
+                    <input type="number" ng-hide="wordLimit">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-xs-12 col-md-12 col-sm-12" ng-repeat="result in results.data" ng-show="formEmpty()">
       <div class="panel panel-default">
         <div class="panel-heading">
