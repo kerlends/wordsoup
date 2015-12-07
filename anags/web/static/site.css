@@ -32,8 +32,9 @@ h4, .panel-heading {
     z-index: 9999;
 }
 
-.btn-opt {
+.btn-opt, button:active {
     height: 2.4em;
     border-radius: 0;
+    text-decoration: none;
     font-family: 'Lobster', sans-serif;
 }
