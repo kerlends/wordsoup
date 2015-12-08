@@ -1,5 +1,8 @@
 angular.module('wordsoup')
-	.controller('SolverController', ['$scope', '$filter', '$timeout', 'SolverService', function($scope, $filter, $timeout, SolverService) {
+	.controller('SolverController', ['$scope', '$filter', '$timeout', '$log', 'SolverService', function($scope, $filter, $timeout, $log, SolverService) {
+        $scope.count = 0;
+        $scope.passCount = 0;
+
 		$scope.rack = '';
         $scope.limitBy = 24;
 
@@ -21,14 +24,18 @@ angular.module('wordsoup')
 		}
 
 		$scope.submit = function() {
-			$timeout.cancel($scope.timeOut);
+            if($scope.timeOut) {
+                $timeout.cancel($scope.timeOut);
+            };
+
 			if($scope.rack.length > 0) {
+
 				$scope.timeOut = $timeout(function() {
                     $scope.data = SolverService.solve($scope.rackClean(), $scope.limitBy);
 					$scope.data.$promise.then(function(data) {
 						$scope.results = data.solved;
 					});
-				}, 150);
+                }, 350);
 			};
 		};
 
