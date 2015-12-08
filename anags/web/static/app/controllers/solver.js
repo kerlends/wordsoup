@@ -35,7 +35,7 @@ angular.module('wordsoup')
 					$scope.data.$promise.then(function(data) {
 						$scope.results = data.solved;
 					});
-                }, 350);
+                }, 260);
 			};
 		};
 
