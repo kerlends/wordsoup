@@ -24,7 +24,7 @@ angular.module('wordsoup')
 			$timeout.cancel($scope.timeOut);
 			if($scope.rack.length > 0) {
 				$scope.timeOut = $timeout(function() {
-                    $scope.data = SolverService.solveWithLimit($scope.rackClean(), $scope.limitBy);
+                    $scope.data = SolverService.solve($scope.rackClean(), $scope.limitBy);
 					$scope.data.$promise.then(function(data) {
 						$scope.results = data.solved;
 					});

@@ -5,9 +5,9 @@
 </div>
 
 <div class="opt-nav">
-    <div class="container">
-        <button class="btn btn-primary btn-lg btn-block btn-opt" data-toggle="modal" data-target="#options">Options</button>
-    </div>
+  <div class="container">
+    <button class="btn btn-primary btn-lg btn-block btn-opt" data-toggle="modal" data-target="#options">Options</button>
+  </div>
 </div>
 
 <div class="container-fluid">
@@ -27,27 +27,27 @@
       <h4><small>{{ rackClean() }}</small></h4>
     </div>
     <div class="modal fade" role="dialog" id="options">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Options</h4>
-                </div>
-                <div class="modal-body">
-                    Limit word count per word length by:
-                    <input type="number" ng-model="limitBy">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Options</h4>
+          </div>
+          <div class="modal-body">
+            Limit word count per word length by:
+            <input type="number" ng-model="limitBy" ng-change="submit()">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="col-xs-12 col-md-12 col-sm-12" ng-repeat="result in results.data" ng-show="formEmpty()">
       <div class="panel panel-default">
         <div class="panel-heading">
-            {{ result.count }} characters <small>({{ result.num }} words)</small>
+          {{ result.count }} characters <small>({{ result.num }} words)</small>
         </div>
         <div class="panel-body">
           <div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in result.words">
