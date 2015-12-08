@@ -6,9 +6,8 @@
     font-family: 'Lobster', sans-serif;
 }
 
-input:focus,
-button:focus {
-    outline: none;
+.modal-open .modal, .btn:focus {
+    outline: none !important;
 }
 
 .jumbotron {
@@ -40,6 +39,5 @@ h4, .panel-heading {
 .btn-opt {
     height: 2.4em;
     border-radius: 0;
-    text-decoration: none;
     font-family: 'Lobster', sans-serif;
 }
