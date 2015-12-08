@@ -41,3 +41,7 @@ h4, .panel-heading {
     border-radius: 0;
     font-family: 'Lobster', sans-serif;
 }
+
+#content-wrapper {
+    margin-bottom: 2.4em;
+}
