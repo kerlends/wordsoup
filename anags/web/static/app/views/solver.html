@@ -34,16 +34,14 @@
             <h4 class="modal-title">Options</h4>
           </div>
           <div class="modal-body">
-            <div class="container-fluid opt">
-              <div class="row v-divider">
-                <div class="col-xs-8 col-sm-8 col-md-8">
-                  <p class="form-control-static">Limit word count per word length by:</p>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                  <input class="form-control" type="number" ng-model="limitBy" ng-change="submit()">
-                </div>
+            <form class="form">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  Limit word count by:
+                </span>
+                <input class="form-control" type="number" ng-model="limitBy" ng-change="submit()">
               </div>
-            </div>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
