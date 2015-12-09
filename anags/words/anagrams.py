@@ -5,11 +5,11 @@ def words_find(rack, WORDS, limit):
     my_words = {}
     c1 = Counter(rack.lower())
 
-    for word, char_list, length in WORDS:
+    for word, length, char_list, points in WORDS:
         c2 = Counter(word)
         same = sorted((c1 & c2).elements())
         if same == char_list:
-            my_words.setdefault(length, []).append(word)
+            my_words.setdefault(length, []).append((word, points))
 
     if limit:
         my_words = limit_results(my_words, limit)

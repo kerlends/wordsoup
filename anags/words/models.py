@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from extra.scrabble import score_card
 
 
 BONUS_TYPES = (
@@ -10,10 +11,9 @@ BONUS_TYPES = (
 
 class Word(models.Model):
     word = models.CharField(max_length=50)
-    charsort = models.CharField(max_length=50, blank=True,
-                                editable=False)
-    length = models.PositiveIntegerField(blank=True, null=True,
-                                         editable=False)
+    charsort = models.CharField(max_length=50, editable=False, null=True)
+    length = models.PositiveIntegerField(editable=False, null=True)
+    scrabble_points = models.PositiveIntegerField(editable=False, null=True)
     charlist = ArrayField(
         models.CharField(max_length=25, blank=True),
         size=25,
@@ -33,6 +33,9 @@ class Word(models.Model):
 
         if not self.charlist:
             self.charlist = list(self.charsort)
+
+        if not self.scrabble_points:
+            self.scrabble_points = score_card(self.word)
 
         super(Word, self).save(*args, **kwargs)
 

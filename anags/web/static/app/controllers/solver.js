@@ -2,6 +2,7 @@ angular.module('wordsoup')
 	.controller('SolverController', ['$scope', '$filter', '$timeout', '$log', 'SolverService', function($scope, $filter, $timeout, $log, SolverService) {
         $scope.count = 0;
         $scope.passCount = 0;
+        $scope.scrabbleMode = false;
 
 		$scope.rack = '';
         $scope.limitBy = 24;

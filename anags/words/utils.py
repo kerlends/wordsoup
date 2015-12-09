@@ -31,9 +31,10 @@ def query_exclude(rack):
 
 
 def query_to_results(rack, limit):
+    values_list_args = ['word', 'length', 'charlist', 'scrabble_points']
+
     all_letters = sorted(rack)
     query = query_chain(all_letters)
-
     del all_letters[0]
     while all_letters:
         query |= query_chain(all_letters)
@@ -42,7 +43,7 @@ def query_to_results(rack, limit):
     flat_query_set = Word.objects.exclude(query_exclude(rack))\
         .filter(query)\
         .distinct()\
-        .values_list('word', 'charlist', 'length')
+        .values_list(*values_list_args)
 
     return words_find(rack, flat_query_set, limit)
 

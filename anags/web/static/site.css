@@ -30,7 +30,7 @@ h4, .panel-heading {
 
 .opt-nav .container {
     padding: 0;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
     z-index: 9999;

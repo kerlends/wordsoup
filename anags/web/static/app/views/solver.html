@@ -36,12 +36,25 @@
             </div>
             <div class="modal-body">
               <form class="form">
+
                 <div class="input-group">
                   <span class="input-group-addon">
                     Limit word count by:
                   </span>
                   <input class="form-control" type="number" ng-model="limitBy" ng-change="submit()">
                 </div>
+
+                <hr>
+
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    Enable scrabble mode:
+                  </span>
+                  <span class="input-group-addon">
+                    <input type="checkbox" ng-model="scrabbleMode">
+                  </span>
+                </div>
+
               </form>
             </div>
             <div class="modal-footer">
@@ -57,9 +70,15 @@
             {{ result.count }} characters <small>({{ result.num }} words)</small>
           </div>
           <div class="panel-body">
-            <div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in result.words">
-              <a ng-click="wordSelect(word)">{{ word }}</a>
+
+            <div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in result.words" ng-if="scrabbleMode">
+              <a ng-click="wordSelect(word)">{{ word[0] }}<sup><strong>{{ word[1] }}</strong></sup></a>
             </div>
+
+            <div class="col-md-2 col-xs-4 col-sm-3" ng-repeat="word in result.words" ng-if="!scrabbleMode">
+              <a ng-click="wordSelect(word)">{{ word[0] }}</a>
+            </div>
+
           </div>
         </div>
       </div>
