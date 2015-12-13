@@ -28,20 +28,19 @@ h4, .panel-heading {
     outline: none !important;
 }
 
-.opt-nav .container {
-    padding: 0;
-    position: absolute;
+.opt-nav {
+    padding: 1em;
+    position: fixed;
     bottom: 0;
-    width: 100%;
-    z-index: 9999;
-}
-
-.btn-opt {
-    height: 2.4em;
-    border-radius: 0;
-    font-family: 'Lobster', sans-serif;
+    right: 0;
+    z-index: 100;
 }
 
 #content-wrapper {
     margin-bottom: 2.4em;
+}
+
+span.glyphicon.glyphicon-tasks {
+  line-height: 1.5;
+  font-size: 1.5em;
 }
