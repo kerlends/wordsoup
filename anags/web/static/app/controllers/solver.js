@@ -20,17 +20,18 @@ angular.module('wordsoup')
 
 		$scope.resetForm = function() {
 			$scope.rack = '';
-			$scope.submit();
+            $scope.results = {};
+            $scope.chosen = [];
 		}
 
 		$scope.submit = function() {
-            $scope.rack = $scope.rack.toLowerCase();
+            $scope.rack = $scope.rackClean();
+
             if($scope.timeOut) {
                 $timeout.cancel($scope.timeOut);
             };
 
 			if($scope.rack.length > 0) {
-
 				$scope.timeOut = $timeout(function() {
                     $scope.data = SolverService.solve($scope.rackClean(), $scope.limitBy);
 					$scope.data.$promise.then(function(data) {
