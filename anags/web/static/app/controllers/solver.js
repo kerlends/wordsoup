@@ -1,11 +1,10 @@
 angular.module('wordsoup')
-	.controller('SolverController', ['$scope', '$filter', '$timeout', '$log', 'SolverService', function($scope, $filter, $timeout, $log, SolverService) {
-        $scope.count = 0;
-        $scope.passCount = 0;
-        $scope.scrabbleMode = false;
-
+	.controller('SolverController', ['$scope', '$filter', '$timeout', 'SolverService', function($scope, $filter, $timeout, SolverService) {
+        var ci, ix;
 		$scope.rack = '';
+        $scope.chosen = [];
         $scope.limitBy = 24;
+        $scope.scrabbleMode = false;
 
 		$scope.rackLower = function() {
 			return $filter('lowercase')($scope.rack);
@@ -25,6 +24,7 @@ angular.module('wordsoup')
 		}
 
 		$scope.submit = function() {
+            $scope.rack = $scope.rack.toLowerCase();
             if($scope.timeOut) {
                 $timeout.cancel($scope.timeOut);
             };
@@ -41,11 +41,20 @@ angular.module('wordsoup')
 		};
 
 		$scope.wordSelect = function(word) {
-			$scope.data = SolverService.refresh($scope.rackClean(), word);
-			$scope.data.$promise.then(function(data) {
-				$scope.results = data.solved;
-				$scope.rack = data.rack;
-			});
+            $scope.chosen.push(word);
+            for(ix=0; ix<word[0].length; ix++) {
+                if($scope.rack.indexOf(word[0][ix]) > -1) {
+                    $scope.rack = $scope.rack.replace(word[0][ix], '');
+                    $scope.submit();
+                }
+            }
 		};
+
+        $scope.delWord = function(word) {
+            ci = $scope.chosen.indexOf(word);
+            $scope.chosen.splice(ci, 1);
+            $scope.rack += word[0];
+            $scope.submit();
+        };
 
 	}]);
