@@ -15,7 +15,7 @@ angular.module('wordsoup')
         };
 
 		$scope.formEmpty = function() {
-			return ($scope.rack.length > 0);
+			return ($scope.rack.length > 0) || ($scope.chosen.length > 0);
 		};
 
 		$scope.resetForm = function() {
@@ -46,9 +46,10 @@ angular.module('wordsoup')
             for(ix=0; ix<word[0].length; ix++) {
                 if($scope.rack.indexOf(word[0][ix]) > -1) {
                     $scope.rack = $scope.rack.replace(word[0][ix], '');
-                    $scope.submit();
                 }
             }
+            if($scope.rack.length > 0) $scope.submit();
+            else $scope.results = {};
 		};
 
         $scope.delWord = function(word) {
