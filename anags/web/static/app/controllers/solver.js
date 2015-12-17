@@ -21,8 +21,11 @@ angular.module('wordsoup')
 		$scope.resetForm = function() {
 			$scope.rack = '';
             $scope.results = {};
-            $scope.chosen = [];
 		}
+
+        $scope.resetChosen = function() {
+            $scope.chosen = [];
+        }
 
 		$scope.submit = function() {
             $scope.rack = $scope.rackClean();

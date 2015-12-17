@@ -1,0 +1,12 @@
+{
+    "name": "wordsoup",
+    "description": "Source for wordsoup.me",
+    "author": "Konrad Erlendsson <konrade@gmail.com>",
+    "dependencies": {
+        "jquery": "*",
+        "bootstrap": "*",
+        "angular": "*",
+        "angular-resource": "*",
+        "angular-route": "*"
+    }
+}

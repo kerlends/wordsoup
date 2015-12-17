@@ -4,8 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from words.solver import SolverForm
-from words.utils import rack_diff
+from words.anagrams import query_to_results
 
 
 class JSONResponse(HttpResponse):
@@ -17,31 +16,7 @@ class JSONResponse(HttpResponse):
 
 @api_view(['GET', 'POST'])
 def solve(request):
-    if request.method == 'GET':
-        form = SolverForm({'rack': rack})
-        print(request.method)
-
-        if form.is_valid():
-            data = form.solve()['data']
-            return JSONResponse(data)
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
         data = request.data
-        keys = data.keys()
-        if 'rack' in keys:
-            if 'word' in keys:
-                refreshed = rack_diff(data['rack'], data['word'])
-                form = SolverForm({'rack': refreshed})
-            else:
-                form = SolverForm({'rack': data['rack']})
-
-            if form.is_valid():
-                if 'limit' in keys:
-                    _raw = form.solve(data['limit'])
-                else:
-                    _raw = form.solve()
-
-                data = _raw['data']
-                new_rack = _raw['rack_str']
-
-                return JSONResponse({'solved': data, 'rack': new_rack})
+        results = query_to_results(data['rack'], data['limit'])
+        return JSONResponse({'solved': results})
