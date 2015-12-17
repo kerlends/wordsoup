@@ -1,0 +1,69 @@
+.jumbotron h1, .jumbotron h1 a, .jumbotron h1 a:visited, .jumbotron h1 a:active {
+    margin-top: 0;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 2.25em;
+    font-family: 'Lobster', sans-serif;
+}
+
+.jumbotron {
+    background: rgb(40, 143, 235);
+    position: relative;
+    text-align: center;
+}
+
+h1 small {
+    color: rgb(0, 0, 0);
+}
+
+h4, h5 {
+    text-align: center;
+}
+
+p {
+    margin: 0;
+}
+
+.container-fluid  {
+    margin-top: 1.5em;
+}
+
+
+.opt-nav {
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+}
+
+span .glyphicon. glyphicon-tasks {
+  line-height: 1.5;
+  font-size: 1.5em;
+}
+
+.modal-open .modal, .btn:focus {
+    outline: none !important;
+}
+.modal-body .form-horizontal .col-sm-2,
+.modal-body .form-horizontal .col-sm-10 {
+  width: 100%;
+}
+.modal-body .form-horizontal .control-label {
+  text-align: left;
+}
+.modal-body .form-horizontal .col-sm-offset-2 {
+  margin-left: 15px;
+}
+
+div .panel .panel-heading {
+    text-align: left;
+    font-size: 1.4em;
+    color: rgb(255, 255, 255);
+    background-color: rgb(40, 143, 235);
+    font-family: 'Lobster', sans-serif;
+}
+
+#content-wrapper {
+    margin-bottom: 2.4em;
+}
