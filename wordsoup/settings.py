@@ -22,6 +22,7 @@ INSTALLED_APPS = (
 
     'api',
     'web',
+    'webapp',
 )
 
 MIDDLEWARE_CLASSES = (
