@@ -22,11 +22,13 @@
       <!-- rack echo -->
       <div class="col-xs-12 col-md-6 col-md-offset-3">
         <h5>
-          <small>
+          <small ng-show="rack.length > 0">
             <strong ng-show="rack.length > 0">{{ rackClean() }}</strong>
-            <strong ng-hide="rack.length > 0">Nothing to show!</strong>
             </br>
             rack length: {{ rack.length }}
+          </small>
+          <small ng-hide="rack.length > 0">
+            <strong ng-hide="rack.length > 0">Nothing to show!</strong>
           </small>
         </h5>
       </div>

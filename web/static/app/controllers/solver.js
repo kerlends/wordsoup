@@ -41,25 +41,26 @@ angular.module('wordsoup')
 						$scope.results = data.solved;
 					});
                 }, 260);
-			};
+            }
+            else $scope.results = {};
 		};
 
 		$scope.wordSelect = function(word) {
             $scope.chosen.push(word);
-            for(ix=0; ix<word[0].length; ix++) {
+            /*for(ix=0; ix<word[0].length; ix++) {
                 if($scope.rack.indexOf(word[0][ix]) > -1) {
                     $scope.rack = $scope.rack.replace(word[0][ix], '');
                 }
             }
             if($scope.rack.length > 0) $scope.submit();
-            else $scope.results = {};
+            else $scope.results = {};*/
 		};
 
         $scope.delWord = function(word) {
             ci = $scope.chosen.indexOf(word);
             $scope.chosen.splice(ci, 1);
-            $scope.rack += word[0];
-            $scope.submit();
+            /*$scope.rack += word[0];
+              $scope.submit();*/
         };
 
 	}]);
