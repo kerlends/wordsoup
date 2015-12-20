@@ -1,24 +1,27 @@
-var Results = React.createClass({
-    render: function() {
-        let myData = {"rack": "anagrams", "limit": 24};
-        let url = "/api/solve/";
-        fetch(url, {
-            mode: 'no-cors',
-            method: 'post',
-            body: myData
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(err => console.error(url, err.toString()));
-        return (
-            <h1>
-                Testing<small>testing</small>
-            </h1>
-        );
+var getData = function() {
+    let myData = {rack: 'anagrams', limit: 24};
+    let url = "/api/solve/";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: myData,
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(e) {
+            console.log(e);
+        },
+        dataType: 'application/json'
+    });
+};
+
+var ResultData = React.createClass({
+    render() {
+        return <h1>test<small>test</small></h1>
     }
 });
 
 React.render(
-    <Results/>,
+    <ResultData/>,
     document.getElementById('content')
 );

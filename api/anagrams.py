@@ -7,6 +7,9 @@ legal_chars = list('abcdefghjiklmnopqrstvuwxyz')
 
 
 def limit_results(words, limit):
+    if not isinstance(limit, int):
+        limit = int(limit)
+
     for k, v in words.items():
         if len(v) > limit:
             words[k] = v[:limit]

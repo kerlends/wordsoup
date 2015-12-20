@@ -1,33 +1,36 @@
 "use strict";
 
-var Results = React.createClass({
-    displayName: "Results",
+var getData = function getData() {
+    var myData = { rack: 'anagrams', limit: 24 };
+    var url = "/api/solve/";
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: myData,
+        success: function success(data) {
+            console.log(data);
+        },
+        error: function error(e) {
+            console.log(e);
+        },
+        dataType: 'application/json'
+    });
+};
 
+var ResultData = React.createClass({
+    displayName: "ResultData",
     render: function render() {
-        var myData = { "rack": "anagrams", "limit": 24 };
-        var url = "/api/solve/";
-        fetch(url, {
-            mode: 'no-cors',
-            method: 'post',
-            body: myData
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            return console.log(data);
-        }).catch(function (err) {
-            return console.error(url, err.toString());
-        });
         return React.createElement(
             "h1",
             null,
-            "Testing",
+            "test",
             React.createElement(
                 "small",
                 null,
-                "testing"
+                "test"
             )
         );
     }
 });
 
-React.render(React.createElement(Results, null), document.getElementById('content'));
+React.render(React.createElement(ResultData, null), document.getElementById('content'));

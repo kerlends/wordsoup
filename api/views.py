@@ -18,5 +18,7 @@ class JSONResponse(HttpResponse):
 def solve(request):
     if request.method == 'POST':
         data = request.data
+        print("Posted object is of type '{}'".format(type(data)))
+        print("Keys: {}".format(data.keys()))
         results = query_to_results(data['rack'], data['limit'])
         return JSONResponse({'solved': results})
