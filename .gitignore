@@ -7,3 +7,5 @@ db.sqlite3
 *.log
 CACHE
 cache
+static/dist
+node_modules

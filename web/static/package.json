@@ -1,0 +1,10 @@
+{
+    "name": "wordsoup (in angular)",
+    "dependencies": {
+        "angular": "*",
+        "angular-route": "*",
+        "angular-resource": "*",
+        "jquery": "*",
+        "bootsrap": "*"
+    }
+}
