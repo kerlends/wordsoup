@@ -1,5 +1,6 @@
 import React from 'react';
 import APIFetch from './fetch';
+import Menu from './components/menu';
 const {PropTypes} = React;
 
 export default class PostForm extends React.Component {
@@ -32,20 +33,35 @@ export default class PostForm extends React.Component {
 
     render() {
         let formData = {rack: this.state.rack, limit: this.state.limit};
+        let limitInput = <input className="form-control" type="number" value={this.state.limit} onChange={this.handleLimitChange} />
+        let buttonText = this.props.buttonText;
+
         return (
-            <form className="form">
-                <div className="form-group">
-                    <input className="form-control" type="text" value={this.state.rack} onChange={this.handleRackChange} />
+            <div>
+                <div className="col-xs-12 col-md-6 col-md-offset-3">
+                    <form className="form">
+                        <div className="input-group">
+                            <input className="form-control" type="text" value={this.state.rack} onChange={this.handleRackChange} />
+                            <APIFetch payload={formData} onUnwrap={this.storeResults} button={buttonText} />
+                        </div>
+                        <div className="input-group">
+                                                    </div>
+                    </form>
                 </div>
-                <div className="form-group">
-                    <input className="form-control" type="number" value={this.state.limit} onChange={this.handleLimitChange} />
+                <div className="col-xs-12 col-md-6 col-md-offset-3">
+                    <h5>
+                        <small>
+                            <strong>{this.state.rack}</strong>
+                        </small>
+                    </h5>
                 </div>
-                <APIFetch payload={formData} onUnwrap={this.storeResults} />
-            </form>
+                <Menu limit={limitInput} />
+            </div>
         );
     }
 }
 
 PostForm.propTypes = {
     handleResults: PropTypes.func.isRequired,
+    buttonText: PropTypes.any.isRequired
 }

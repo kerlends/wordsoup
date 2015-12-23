@@ -40,29 +40,34 @@ export default class APIFetch extends React.Component {
     postApi(event) {
         event.preventDefault();
         let data = this.props.payload;
-        fetch('/api/solve/', {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(this.checkStatus)
-        .then(this.jsonUnwrap)
-        .then(this.handleData)
+        if (data.rack.length > 0) {
+            fetch('/api/solve/', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(this.checkStatus)
+            .then(this.jsonUnwrap)
+            .then(this.handleData)
+        }
+        else alert("Can't submit an empty rack!");
     }
 
     render() {
+        let buttonText = this.props.button;
         return (
-            <div className="well">
-                <button className="btn btn-primary" onClick={this.postApi} type="submit">Post</button>
-            </div>
+            <span className="input-group-btn">
+                <button className="btn btn-default" onClick={this.postApi} type="submit">{buttonText}</button>
+            </span>
         );
     }
 }
 
 APIFetch.propTypes = {
     payload: PropTypes.any.isRequired,
-    onUnwrap: PropTypes.func.isRequired
+    onUnwrap: PropTypes.func.isRequired,
+    button: PropTypes.any.isRequired
 }

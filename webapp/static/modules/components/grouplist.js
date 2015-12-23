@@ -13,7 +13,7 @@ export default class GroupList extends React.Component {
 
     render() {
         return (
-            <div className="well">
+            <div className="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
                 {this.buildGroups(this.props.groups)}
             </div>
         );

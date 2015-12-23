@@ -15,9 +15,9 @@ export default class WordList extends React.Component {
     render() {
         let words = this.props.item;
         return (
-            <ul className="list-group">
+            <div className="panel-body">
                 {this.generateList(words)}
-            </ul>
+            </div>
         );
     }
 }
