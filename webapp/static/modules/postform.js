@@ -35,7 +35,7 @@ export default class PostForm extends React.Component {
 
     this.inputTimer = setTimeout(() => {
       this.postApi();
-    }, 250);
+    }, 320);
 
   }
 

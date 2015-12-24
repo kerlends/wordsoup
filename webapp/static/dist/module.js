@@ -610,7 +610,7 @@ var PostForm = (function (_React$Component) {
 
     this.inputTimer = setTimeout(function () {
       _this.postApi();
-    }, 250);
+    }, 320);
   };
 
   PostForm.prototype.handleLimitChange = function handleLimitChange(event) {
