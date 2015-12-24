@@ -639,12 +639,16 @@ var App = (function (_React$Component) {
             return _react2['default'].createElement(_componentsGrouplist2['default'], { groups: this.state.groups });
         } else {
             return _react2['default'].createElement(
-                'center',
-                null,
+                'div',
+                { className: 'col-xs-12 col-sm-12 col-md-12' },
                 _react2['default'].createElement(
-                    'p',
+                    'center',
                     null,
-                    'Nothing to show!'
+                    _react2['default'].createElement(
+                        'p',
+                        null,
+                        'Nothing to show!'
+                    )
                 )
             );
         }
@@ -719,7 +723,7 @@ var PostForm = (function (_React$Component) {
     }
 
     PostForm.prototype.handleRackChange = function handleRackChange(event) {
-        this.setState({ rack: event.target.value });
+        this.setState({ rack: event.target.value.toLowerCase().replace(/[^a-zA-Z]/g, '') });
     };
 
     PostForm.prototype.handleLimitChange = function handleLimitChange(event) {

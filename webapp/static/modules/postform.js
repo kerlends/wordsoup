@@ -17,7 +17,7 @@ export default class PostForm extends React.Component {
     }
 
     handleRackChange(event) {
-        this.setState({rack: event.target.value});
+        this.setState({rack: event.target.value.toLowerCase().replace(/[^a-zA-Z]/g, '')});
     }
 
     handleLimitChange(event) {

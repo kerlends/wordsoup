@@ -29,7 +29,11 @@ export default class App extends React.Component {
         if (this.isNotEmpty()) {
             return <GroupList groups={this.state.groups} />;
         } else {
-            return <center><p>Nothing to show!</p></center>;
+            return (
+                <div className="col-xs-12 col-sm-12 col-md-12">
+                    <center><p>Nothing to show!</p></center>
+                </div>
+            )
         }
     }
 
