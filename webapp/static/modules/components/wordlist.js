@@ -13,10 +13,12 @@ export default class WordList extends React.Component {
     }
 
     render() {
-        let words = this.props.item;
+        let words = this.props.words.map((word) => {
+            return <Word item={word} key={word[0]} />
+        });
         return (
             <div className="panel-body">
-                {this.generateList(words)}
+                {words}
             </div>
         );
     }

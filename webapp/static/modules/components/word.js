@@ -1,5 +1,4 @@
 import React from 'react';
-const {PropTypes} = React;
 
 export default class Word extends React.Component {
     render() {
@@ -10,8 +9,4 @@ export default class Word extends React.Component {
             </div>
         );
     }
-}
-
-Word.propTypes = {
-    item: PropTypes.array.isRequired
 }
