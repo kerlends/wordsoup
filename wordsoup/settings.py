@@ -21,7 +21,7 @@ INSTALLED_APPS = (
     'compressor',
 
     'api',
-    'web',
+    'webapp',
 )
 
 MIDDLEWARE_CLASSES = (
