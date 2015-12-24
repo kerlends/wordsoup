@@ -45,7 +45,7 @@ export default class App extends React.Component {
 
   render() {
     let wsInfo = {show: this.isNotEmpty(), text: "word soup"};
-    let buttonText = 'Solve!';
+    let buttonText = 'Clear!';
     return (
       <div>
         <WordSoupHeader info={wsInfo} />

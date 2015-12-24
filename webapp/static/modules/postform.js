@@ -11,11 +11,18 @@ export default class PostForm extends React.Component {
     }
 
     this.storeResults = this.storeResults.bind(this);
+    this.clearAll = this.clearAll.bind(this);
     this.handleRackChange = this.handleRackChange.bind(this);
     this.handleLimitChange = this.handleLimitChange.bind(this);
   }
 
   inputTimer;
+
+  clearAll(event) {
+    event.preventDefault();
+    this.setState({rack: ''});
+    this.props.panic();
+  }
 
   handleRackChange(event) {
     this.setState({rack: event.target.value.toLowerCase().replace(/[^a-zA-Z]/g, '')});
@@ -82,9 +89,9 @@ export default class PostForm extends React.Component {
         <div className="col-xs-12 col-md-6 col-md-offset-3">
           <form className="form">
             <div className="input-group">
-              <input className="form-control" type="text" value={this.state.rack} onChange={this.handleRackChange} />
+              <input className="form-control" type="text" value={this.state.rack} onChange={this.handleRackChange} autofocus autoComplete="off" />
               <span className="input-group-btn">
-                <button className="btn btn-default" onClick={this.postApi} type="submit">{buttonText}</button>
+                <button className="btn btn-default" onClick={this.clearAll} type="submit">{buttonText}</button>
               </span>
             </div>
             <div className="input-group">

@@ -528,7 +528,7 @@ var App = (function (_React$Component) {
 
   App.prototype.render = function render() {
     var wsInfo = { show: this.isNotEmpty(), text: "word soup" };
-    var buttonText = 'Solve!';
+    var buttonText = 'Clear!';
     return _react2['default'].createElement(
       'div',
       null,
@@ -586,9 +586,16 @@ var PostForm = (function (_React$Component) {
     };
 
     this.storeResults = this.storeResults.bind(this);
+    this.clearAll = this.clearAll.bind(this);
     this.handleRackChange = this.handleRackChange.bind(this);
     this.handleLimitChange = this.handleLimitChange.bind(this);
   }
+
+  PostForm.prototype.clearAll = function clearAll(event) {
+    event.preventDefault();
+    this.setState({ rack: '' });
+    this.props.panic();
+  };
 
   PostForm.prototype.handleRackChange = function handleRackChange(event) {
     var _this = this;
@@ -661,13 +668,13 @@ var PostForm = (function (_React$Component) {
           _react2['default'].createElement(
             'div',
             { className: 'input-group' },
-            _react2['default'].createElement('input', { className: 'form-control', type: 'text', value: this.state.rack, onChange: this.handleRackChange }),
+            _react2['default'].createElement('input', { className: 'form-control', type: 'text', value: this.state.rack, onChange: this.handleRackChange, autofocus: true, autoComplete: 'off' }),
             _react2['default'].createElement(
               'span',
               { className: 'input-group-btn' },
               _react2['default'].createElement(
                 'button',
-                { className: 'btn btn-default', onClick: this.postApi, type: 'submit' },
+                { className: 'btn btn-default', onClick: this.clearAll, type: 'submit' },
                 buttonText
               )
             )
