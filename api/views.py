@@ -16,6 +16,7 @@ class JSONResponse(HttpResponse):
 
 @api_view(['GET', 'POST'])
 def solve(request):
+    print(request.data)
     if request.method == 'POST':
         data = request.data
         results = query_to_results(data['rack'], data['limit'])
