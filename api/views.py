@@ -25,7 +25,8 @@ def solve(request):
         results = query_to_results(data['rack'], data['limit'])
         if results:
             try:
-                ip = request.META['HTTP_X_FORWARDED_FOR']
+                print(request.META.keys())
+                ip = request.META['REMOTE_ADDR']
             except:
                 ip = '0.0.0.0'
 
