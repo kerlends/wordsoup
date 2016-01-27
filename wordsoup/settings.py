@@ -1,8 +1,9 @@
 import os
+from extra.skgen import generate
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = generate()
 
 DEBUG = True if os.environ.get('DEBUG') == 'True' else False
 
@@ -36,7 +37,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 
-    #'wordsoup.middleware.InternalOnlyMiddleware',
+    # 'wordsoup.middleware.InternalOnlyMiddleware',
 )
 
 ROOT_URLCONF = 'wordsoup.urls'
@@ -94,7 +95,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 STATIC_URL = '/static/'
 
