@@ -3,8 +3,8 @@ import PostForm from './postform';
 import GroupList from './components/grouplist';
 import WordSoupHeader from './components/jumbotron';
 import Menu from './components/menu';
-require('bootstrap-loader');
-require('!style!css!./css/new.css');
+import 'bootstrap-loader');
+import '!style!css!./css/new.css');
 
 
 export default class App extends React.Component {
