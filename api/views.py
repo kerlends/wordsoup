@@ -1,3 +1,5 @@
+import json
+
 from collections import Counter
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -22,6 +24,11 @@ def solve(request):
         data = request.data
         results = query_to_results(data['rack'], data['limit'])
         if results:
-            update_latest_event.delay()
+            try:
+                ip = request.META['HTTP_X_FORWARDED_FOR']
+            except:
+                ip = '0.0.0.0'
+
+            update_latest_event.delay(ip)
 
         return JSONResponse({'solved': results})
