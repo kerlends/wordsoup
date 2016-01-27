@@ -15,7 +15,8 @@ class EntryAdmin(admin.ModelAdmin):
     inlines = [EventInline]
     list_display = ('ip_address',
                     'first_recorded_at',
-                    'last_recorded_request')
+                    'last_recorded_request',
+                    'num_events')
 
     readonly_fields = ['ip_address',
                        'first_recorded_at',
@@ -23,6 +24,10 @@ class EntryAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False
+
+    def num_events(self, obj):
+        return obj.events.count()
+    num_events.short_description = 'Number of events'
 
 
 admin.site.register(Entry, EntryAdmin)
