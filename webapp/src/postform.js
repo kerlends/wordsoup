@@ -11,7 +11,6 @@ export default class PostForm extends React.Component {
       limit: 24
     }
 
-    this.apiUrl = 'http://localhost:8000/api/solve/';
     this.storeResults = this.storeResults.bind(this);
     this.clearAll = this.clearAll.bind(this);
     this.handleRackChange = this.handleRackChange.bind(this);
@@ -35,18 +34,19 @@ export default class PostForm extends React.Component {
     }
 
     this.inputTimer = setTimeout(() => {
-      post(this.state, this.apiUrl, this.storeResults);
+      post(this.state, this.storeResults);
     }, 320);
   }
 
   handleLimitChange(event) {
     this.setState({limit: event.target.value});
+    post(this.state, this.storeResults);
   }
 
   storeResults(data) {
     let {handleResults} = this.props;
-    this.setState({results: data.solved}, () => {
-      handleResults(data.solved);
+    this.setState({results: data}, () => {
+      handleResults(data);
     });
   }
 

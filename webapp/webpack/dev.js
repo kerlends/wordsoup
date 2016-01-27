@@ -1,40 +1,41 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
 
 const PATHS = {
-  app: path.join(__dirname, '../app'),
-  build: path.join(__dirname, '../dist')
+  app: path.join(__dirname, '../src'),
+  build: path.join(__dirname, '../build')
 }
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
+    'webpack-hot-middleware/client',
     PATHS.app
   ],
-
   output: {
     filename: 'bundle.js',
     path: PATHS.build,
-    publicPath: 'static/dist/',
+    publicPath: '/build/'
+  },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true,
+    stats: 'errors-only',
+    host: 'localhost',
+    port: 3000
   },
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-      },
-      __DEVELOPMENT__: false,
+      __DEVELOPMENT__: true,
     }),
     new ExtractTextPlugin('bundle.css'),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
       jQuery: 'jquery',
     }),
@@ -42,7 +43,7 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.jsx', '.js', '.json', '.scss'],
-    modulesDirectories: ['node_modules', 'src'],
+    modulesDirectories: ['node_modules', 'app'],
   },
 
   module: {
@@ -73,7 +74,7 @@ module.exports = {
       exclude: /node_modules/,
     }, {
       test: /\.scss$/,
-      loader: 'style!css!postcss-loader!sass',
+      loader: 'style!css?localIdentName=[path]!postcss-loader!sass',
     }, {
       test: /\.png$/,
       loader: 'file?name=[name].[ext]',
@@ -81,9 +82,5 @@ module.exports = {
       test: /\.jpg$/,
       loader: 'file?name=[name].[ext]',
     }],
-  },
-
-  postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] })
-  ]
+  }
 };

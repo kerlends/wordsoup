@@ -46,7 +46,7 @@ ROOT_URLCONF = 'wordsoup.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'webapp')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +79,9 @@ DATABASES = {
 }
 
 INTERNAL_IPS = [
-    '10.8.0.18'
+    '10.8.0.18',
+    '0.0.0.0',
+    '127.0.0.1'
 ]
 
 LANGUAGE_CODE = 'en-us'
@@ -99,6 +101,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'webapp')]
 
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True

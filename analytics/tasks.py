@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from celery import task
 from django.utils import timezone
 from analytics.models import Event, Entry

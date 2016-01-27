@@ -3,7 +3,8 @@ from django.db.models import Q
 from api.models import Word
 
 
-legal_chars = list('abcdefghjiklmnopqrstvuwxyz')
+LEGAL_CHARS = set('abcdefghjiklmnopqrstvuwxyz')
+FIELDS = ['word', 'length', 'charlist', 'scrabble_points']
 
 
 def limit_results(words, limit):
@@ -19,7 +20,7 @@ def limit_results(words, limit):
 
 def words_find(rack, all_words, limit):
     my_words = {}
-    c1 = Counter(rack.lower())
+    c1 = Counter(rack)
 
     for word, length, char_list, points in all_words:
         c2 = Counter(word)
@@ -27,14 +28,15 @@ def words_find(rack, all_words, limit):
         if same == char_list:
             my_words.setdefault(length, []).append((word, points))
 
-    if limit:
-        my_words = limit_results(my_words, limit)
+    if limit == 0:
+        limit += 1
 
+    my_words = limit_results(my_words, limit)
     items = sorted(my_words.items(), reverse=True)
 
-    return {'data': [
+    return [
         {'count': key, 'words': val, 'num': len(val)} for key, val in items
-    ]}
+    ]
 
 
 def query_chain(rack):
@@ -45,7 +47,7 @@ def query_chain(rack):
 
 
 def query_exclude(rack):
-    disclude = sorted(set(legal_chars) - set(rack))
+    disclude = sorted((LEGAL_CHARS) - set(rack))
     queries = [Q(word__contains=x) for x in disclude]
     query = queries.pop()
     while queries:
@@ -55,8 +57,6 @@ def query_exclude(rack):
 
 
 def query_to_results(rack, limit):
-    values_list_args = ['word', 'length', 'charlist', 'scrabble_points']
-
     all_letters = sorted(rack)
     query = query_chain(all_letters)
     del all_letters[0]
@@ -67,6 +67,6 @@ def query_to_results(rack, limit):
     flat_query_set = Word.objects.exclude(query_exclude(rack))\
         .filter(query)\
         .distinct()\
-        .values_list(*values_list_args)
+        .values_list(*FIELDS)
 
     return words_find(rack, flat_query_set, limit)

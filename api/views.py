@@ -24,11 +24,6 @@ def solve(request):
         data = request.data
         results = query_to_results(data['rack'], data['limit'])
         if results:
-            try:
-                ip = request.META['REMOTE_ADDR']
-            except:
-                ip = '0.0.0.0'
+            update_latest_event.delay(request.META['REMOTE_ADDR'])
 
-            update_latest_event.delay(ip)
-
-        return JSONResponse({'solved': results})
+        return JSONResponse(results)

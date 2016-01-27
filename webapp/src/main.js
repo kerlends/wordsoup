@@ -3,8 +3,6 @@ import PostForm from './postform';
 import GroupList from './components/grouplist';
 import WordSoupHeader from './components/jumbotron';
 import Menu from './components/menu';
-import 'bootstrap-loader');
-import '!style!css!./css/new.css');
 
 
 export default class App extends React.Component {
@@ -20,7 +18,7 @@ export default class App extends React.Component {
   }
 
   storeResults(data) {
-    this.setState({groups: data.data});
+    this.setState({groups: data});
   }
 
   clearDisplay() {

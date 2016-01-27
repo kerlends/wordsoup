@@ -1,6 +1,6 @@
-export default function post (state, url, storeHandler) {
+export default function post (state, storeHandler) {
   if (state.rack.length > 0) {
-    fetch(url, {
+    fetch(apiUrl, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
