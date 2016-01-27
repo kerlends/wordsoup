@@ -22,6 +22,7 @@ INSTALLED_APPS = (
     'compressor',
 
     'api',
+    'analytics',
     'webapp',
 )
 
@@ -100,3 +101,5 @@ STATIC_URL = '/static/'
 
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
+
+BROKER_URL = 'redis://localhost:6379/0'

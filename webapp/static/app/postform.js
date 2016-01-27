@@ -11,7 +11,7 @@ export default class PostForm extends React.Component {
       limit: 24
     }
 
-    this.apiUrl = '/api/solve/';
+    this.apiUrl = 'http://localhost:8000/api/solve/';
     this.storeResults = this.storeResults.bind(this);
     this.clearAll = this.clearAll.bind(this);
     this.handleRackChange = this.handleRackChange.bind(this);
