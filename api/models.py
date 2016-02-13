@@ -19,15 +19,6 @@ class Word(models.Model):
         return self.word
 
     def save(self, *args, **kwargs):
-        if not self.charsort:
-            self.charsort = "".join(sorted(self.word))
-
-        if not self.length:
-            self.length = len(self.word)
-
-        if not self.charlist:
-            self.charlist = list(self.charsort)
-
         if not self.scrabble_points:
             self.scrabble_points = score_card(self.word)
 

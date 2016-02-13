@@ -40,7 +40,6 @@ def words_find(rack, all_words, limit):
 
 
 def query_chain(rack):
-    rack = rack[::]
     return Q(length__lte=len(rack)) &\
         Q(charsort__startswith=rack[0]) &\
         Q(charlist__contained_by=rack)
@@ -59,10 +58,12 @@ def query_exclude(rack):
 def query_to_results(rack, limit):
     all_letters = sorted(rack)
     query = query_chain(all_letters)
+    """
     del all_letters[0]
     while all_letters:
         query |= query_chain(all_letters)
         del all_letters[0]
+    """
 
     flat_query_set = Word.objects.exclude(query_exclude(rack))\
         .filter(query)\
