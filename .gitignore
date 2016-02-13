@@ -10,3 +10,5 @@ cache
 node_modules
 dist
 assets
+.venv
+.evars.fish

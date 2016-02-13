@@ -1,7 +1,6 @@
 {
-  "name": "react-redux-starter-kit",
+  "name": "wordsoup",
   "version": "1.0.0",
-  "description": "Get started with React, Redux, and React-Router!",
   "main": "index.js",
   "engines": {
     "node": ">=4.2.0",
@@ -46,11 +45,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
+    "url": "git+https://github.com/kerlends/wordsoup.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
+  "author": "Konrad Erlendsson <konrade@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.9.1",
     "better-npm-run": "0.0.5",
     "debug": "^2.2.0",
     "dotenv": "^2.0.0",
@@ -65,6 +65,7 @@
     "react-router": "^2.0.0-rc5",
     "react-router-redux": "^3.0.0",
     "redux": "^3.0.0",
+    "redux-promise": "^0.5.1",
     "redux-thunk": "^1.0.0",
     "url": "^0.11.0",
     "whatwg-fetch": "^0.11.0",
