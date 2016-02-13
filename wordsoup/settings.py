@@ -3,29 +3,33 @@ from extra.skgen import generate
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = generate()
-
 DEBUG = True if os.environ.get('DEBUG') == 'True' else False
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(', ')
-
-INSTALLED_APPS = (
+CORE_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
+)
 
-    'rest_framework',
+THIRD_PARTY_APPS = (
+    'rest_framework'
+)
+
+DEV_APPS = (
     'corsheaders',
-    'django_extensions',
-    'compressor',
+    'django_extensions'
+)
 
+APPS = (
     'api',
     'analytics',
-    'webapp',
+    'webapp'
 )
+
+INSTALLED_APPS = CORE_APPS + THIRD_PARTY_APPS + APPS
 
 MIDDLEWARE_CLASSES = (
     'corsheaders.middleware.CorsMiddleware',
@@ -37,8 +41,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
-    # 'wordsoup.middleware.InternalOnlyMiddleware',
 )
 
 ROOT_URLCONF = 'wordsoup.urls'
@@ -58,12 +60,6 @@ TEMPLATES = [
         },
     },
 ]
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-)
 
 WSGI_APPLICATION = 'wordsoup.wsgi.application'
 
@@ -86,7 +82,7 @@ INTERNAL_IPS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = os.environ.get('TZ')
+TIME_ZONE = 'Canada/Eastern'
 
 USE_I18N = True
 
@@ -94,17 +90,20 @@ USE_L10N = True
 
 USE_TZ = True
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'webapp')]
 
-if DEBUG:
-    CORS_ORIGIN_ALLOW_ALL = True
-
 BROKER_URL = 'redis://localhost:6379/0'
+
+if DEBUG:
+    SECRET_KEY = ';)'
+    INSTALLED_APPS += DEV_APPS
+    ALLOWED_HOSTS = []
+    CORS_ORIGIN_ALLOW_ALL = True
+else:
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(', ')
+    SECRET_KEY = generate()
+    MIDDLEWARE_CLASSES += ('wordsoup.middleware.InternalOnlyMiddleware',)
