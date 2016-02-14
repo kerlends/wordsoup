@@ -63,7 +63,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wordsoup.wsgi.application'
 
-DATABASES = {
+DB_PROD = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('DBNAME'),
@@ -71,6 +71,13 @@ DATABASES = {
         'PASSWORD': os.environ.get('DBPASSW'),
         'HOST': 'localhost',
         'PORT': '',
+    }
+}
+
+DB_DEV = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 
@@ -103,7 +110,9 @@ if DEBUG:
     INSTALLED_APPS += DEV_APPS
     ALLOWED_HOSTS = []
     CORS_ORIGIN_ALLOW_ALL = True
+    DATABASES = DB_DEV
 else:
     ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(', ')
+    DATABASES = DB_PROD
     SECRET_KEY = generate()
     MIDDLEWARE_CLASSES += ('wordsoup.middleware.InternalOnlyMiddleware',)
