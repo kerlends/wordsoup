@@ -22,8 +22,11 @@ class JSONResponse(HttpResponse):
 def solve(request):
     if request.method == 'POST':
         data = request.data
+        if 'rack' not in data.keys():
+            return JSONResponse([])
         results = query_to_results(data['rack'], data['limit'])
         if results:
             update_latest_event.delay(request.META['REMOTE_ADDR'])
 
+        print(results)
         return JSONResponse(results)
