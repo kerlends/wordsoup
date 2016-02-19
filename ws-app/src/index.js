@@ -4,14 +4,13 @@ import { Provider } from 'react-redux';
 import ToolboxApp from 'react-toolbox/lib/app';
 
 import App from './App';
-import { store } from './store';
+import { configureStore } from './store';
 
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <ToolboxApp>
-      <App />
-    </ToolboxApp>
+    <App />
   </Provider>
   , document.getElementById('root')
 );

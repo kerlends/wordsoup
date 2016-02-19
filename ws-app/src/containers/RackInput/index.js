@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
-import Input from 'react-toolbox/lib/input';
 
+import { solver } from '../../actions';
 import classes from './styles.scss';
 
 import {
@@ -20,7 +20,7 @@ class RackInput extends Component {
     this.setState({ rack });
 
     if (rack.length > 0) {
-      this.props.solverRequest(rack);
+      this.props.solver(rack);
     } else {
       this.props.clearRack();
     }
@@ -48,4 +48,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { solverRequest, clearRack })(RackInput);
+export default connect(mapStateToProps, { solver, clearRack })(RackInput);

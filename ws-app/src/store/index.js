@@ -1,14 +1,16 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import promise from 'redux-promise';
+import thunk from 'redux-thunk';
 
 import { rootReducer } from '../reducers';
 
+const middlewares = [promise, thunk];
 const enhancer = compose(
-  applyMiddleware(promise),
+  applyMiddleware(...middlewares),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
-const configureStore = (initialState) => {
+export const configureStore = (initialState) => {
   const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {
@@ -17,5 +19,3 @@ const configureStore = (initialState) => {
 
   return store;
 }
-
-export const store = configureStore();

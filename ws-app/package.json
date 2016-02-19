@@ -55,6 +55,7 @@
     "react-toolbox": "^0.14.1",
     "redux": "^3.3.1",
     "redux-form": "^4.1.14",
-    "redux-promise": "^0.5.1"
+    "redux-promise": "^0.5.1",
+    "redux-thunk": "^1.0.3"
   }
 }

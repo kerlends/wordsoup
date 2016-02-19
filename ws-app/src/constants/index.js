@@ -1,2 +1,5 @@
 export const SOLVER_REQUEST = 'SOLVER_REQUEST';
+export const SOLVER_SUCCESS = 'SOLVER_SUCCESS';
+export const SOLVER_FAILURE = 'SOLVER_FAILURE';
+
 export const RACK_CLEAR = 'RACK_CLEAR';
