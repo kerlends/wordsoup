@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { connect } from 'react-redux';
 
 import WordGroup from '../../components/WordGroup';
+import Page from '../../components/Page';
 import classes from './styles.scss';
 
 class WordGroups extends Component {
@@ -18,6 +19,7 @@ class WordGroups extends Component {
         {results.map(group => {
           return <WordGroup
             count={group.count}
+            key={group.count}
             num={group.num}
             words={group.words}
           />

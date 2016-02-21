@@ -9,7 +9,8 @@ import {
 const initialState = {
   results: [],
   errors: null,
-  isSolving: false
+  isSolving: false,
+  isEmpty: true
 }
 
 export default (state = initialState, action) => {
@@ -24,6 +25,7 @@ export default (state = initialState, action) => {
             ...state,
             results: action.results.data,
             isSolving: false,
+            isEmpty: !(action.results.data.length > 0),
             errors: null
           }
       case SOLVER_FAILURE:
@@ -36,7 +38,8 @@ export default (state = initialState, action) => {
           return {
             results: [],
             errors: null,
-            isSolving: false
+            isSolving: false,
+            isEmpty: true
           };
       default:
           return state;

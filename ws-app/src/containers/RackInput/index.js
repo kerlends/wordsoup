@@ -1,51 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
+import _ from 'lodash';
 
-import { solver } from '../../actions';
+import { solver, clearRack } from '../../actions';
 import classes from './styles.scss';
 
-import {
-  solverRequest,
-  clearRack
-} from '../../actions';
-
 class RackInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { rack: '' };
-  }
-
   onInputChange = (rack) => {
-    this.setState({ rack });
-
-    if (rack.length > 0) {
-      this.props.solver(rack);
-    } else {
-      this.props.clearRack();
-    }
+    const { solver, clearRack } = this.props;
+    rack.length > 0 ? solver(rack) : clearRack();
   };
 
   render() {
+    const solve = _.debounce(rack => {
+      this.onInputChange(rack)
+    }, 300);
+
     return (
-      <div className={cx('container-fluid', classes.container)}>
-        <input
-          type='text'
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-          className={cx('form-control', classes.input)}
-          value={this.state.rack}
-          onChange={event => this.onInputChange(event.target.value)}
-        />
-      </div>
+      <input
+        type='text'
+        className={cx('form-control', classes.input)}
+        onChange={event => solve(event.target.value)}
+        onKeyDown={event => console.log(event.target.value)}
+      />
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    results: state.results
-  }
-};
-
-export default connect(mapStateToProps, { solver, clearRack })(RackInput);
+export default connect(null, { solver, clearRack })(RackInput);

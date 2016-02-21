@@ -28,5 +28,4 @@ def solve(request):
         if results:
             update_latest_event.delay(request.META['REMOTE_ADDR'])
 
-        print(results)
         return JSONResponse(results)

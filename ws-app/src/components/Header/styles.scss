@@ -1,11 +1,22 @@
 .jumbo {
+    display: block;
     background-color: rgb(85, 170, 195) !important;
     font-size: 2.25em;
     border-radius: 0;
+    transition: all .2s ease-out;
+    margin-bottom: 0;
+}
+
+.collapse {
+    margin-top: -44px - (32px)*2;
+    @media (min-width: 544px) {
+        margin-top: -44px - (64px)*2;
+    }
 }
 
 .header {
     vertical-align: middle;
+    text-align: center;
     margin: 0;
     font-family: 'Lobster', sans-serif;
     small {

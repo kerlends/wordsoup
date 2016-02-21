@@ -1,37 +1,39 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
-const Word = (props) => {
+import css from './styles.scss';
+
+const Word = props => {
   const { word } = props;
   return (
-    <small key={word[0]}>
+    <small className={css.word}>
       {word[0]}
       <sup>{word[1]}</sup>
     </small>
   )
-};
+}
 
-const WordList = (props) => {
-  let { words } = props;
+const WordList = props => {
+  const { words } = props;
   return (
-    <div className='wordlist' key={props.key}>
+    <div className={css.wordlist}>
       {words.map(word => {
-        return <Word word={word} />;
+        return <Word word={word} key={word} />;
       })}
     </div>
   )
-};
+}
 
-const WordGroup = (props) => {
+const WordGroup = props => {
   let { count, num, words } = props;
-  const title = `${count} letter words`;
+  const title = `${count} letters`;
   const subtitle = `${num} total`;
 
   return (
-    <div className='row' key={count}>
-      <div className='col-xs-12'>
-        {title} <small>({subtitle})</small>
+    <div key={count}>
+      <div className={css.header}>
+        <div>{title}</div> <small>({subtitle})</small>
       </div>
-      <WordList words={words} key={count} />
+      <WordList words={words} />
     </div>
   )
 }

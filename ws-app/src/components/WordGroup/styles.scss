@@ -1,0 +1,22 @@
+.wordlist {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.word {
+    margin: 5px;
+    padding: 5px;
+    background-color: #55aac3;
+    color: white;
+    text-shadow: 0 1px 1px rgba(black, .14);
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 0.95em;
+    box-shadow: 0 1px 4px rgba(skyblue, .24);
+}
+
+.header {
+    margin: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .24);
+    display: flex;
+    justify-content: space-between;
+}

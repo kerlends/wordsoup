@@ -8,7 +8,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'bootstrap-loader',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://192.168.0.14:3000',
     'webpack/hot/only-dev-server',
     './src/index'
   ],

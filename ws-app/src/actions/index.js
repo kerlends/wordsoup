@@ -6,7 +6,7 @@ import {
   RACK_CLEAR
 } from '../constants';
 
-const API_URL = 'http://localhost:8000/api/solve/';
+const API_URL = 'http://192.168.0.14:8000/api/solve/';
 
 export const solverRequest = () => ({
   type: SOLVER_REQUEST
@@ -24,7 +24,6 @@ export const solverFailure = (errors) => ({
 
 export const solver = (rack) => {
   return dispatch => {
-    debugger;
     dispatch(solverRequest());
     return axios.post(API_URL, { rack, limit: 24 })
       .then(response => dispatch(solverSuccess(response)))
